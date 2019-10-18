@@ -1,6 +1,7 @@
 import { InfoPagina } from './../../interfaces/info-pagina.interface';
 import { Component, OnInit } from '@angular/core';
 import { InfoPaginaService } from '../../services/info-pagina.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
 cargada = false;
 info: InfoPagina = {};
   // tslint:disable-next-line:variable-name
-  constructor( public _servicio: InfoPaginaService) { }
+  constructor( public _servicio: InfoPaginaService,
+               private router: Router) { }
 
   ngOnInit() {
     this._servicio.infoPage() .subscribe( (resp: InfoPagina) => {
@@ -20,6 +22,13 @@ info: InfoPagina = {};
       //    console.log(this.info.titulo);
       //  console.log( resp.email );
        });
+  }
+  buscarProducto(termino: string) {
+    if (termino.length < 1) {
+      return;
+    }
+    this.router.navigate(['/search', termino]);
+    console.log(termino);
   }
 
 }
