@@ -13,7 +13,7 @@ const app_routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'item/:id', component: ItemComponent },
     { path: 'search/:termino', component: SearchComponent },
-    { path: '**', pathMatch: 'full', redirectTo: '' }
+    { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 
 
